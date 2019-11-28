@@ -2,7 +2,7 @@
 # CONFIG -----------------------------------------------------------------------------------------------------------#
 
 # Here are the input and output data paths (Note: you can override wav_path in preprocess.py)
-wav_path = '/path/to/wav_files/'
+wav_path = './LJSpeech-1.1'
 data_path = 'data/'
 
 # model ids are separate - that way you can use a new tts with an old wavernn and vice versa
@@ -11,7 +11,7 @@ voc_model_id = 'ljspeech_mol'
 tts_model_id = 'ljspeech_lsa_smooth_attention'
 
 # set this to True if you are only interested in WaveRNN
-ignore_tts = False
+ignore_tts = True
 
 
 # DSP --------------------------------------------------------------------------------------------------------------#
