@@ -48,11 +48,14 @@ def gen_from_file(model: WaveRNN, load_path: Path, save_path: Path, batched, tar
     elif suffix == ".npy":
         mel = np.load(load_path)
         if mel.ndim != 2 or mel.shape[0] != hp.num_mels:
-            raise ValueError(f'Expected a numpy array shaped (n_mels, n_hops), but got {wav.shape}!')
+            raise ValueError(f'Expected a numpy array shaped ({hp.num_mels}, n_hops), but got {mel.shape}!')
         _max = np.max(mel)
         _min = np.min(mel)
         if _max >= 1.01 or _min <= -0.01:
-            raise ValueError(f'Expected spectrogram range in [0,1] but was instead [{_min}, {_max}]')
+            mel = mel / _max
+            print(_max)
+            print(np.max(mel))
+            #raise ValueError(f'Expected spectrogram range in [0,1] but was instead [{_min}, {_max}]')
     else:
         raise ValueError(f"Expected an extension of .wav or .npy, but got {suffix}!")
 
